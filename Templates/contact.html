@@ -1,6 +1,214 @@
 {% extends 'base.html' %}
-{% block title %}Gallery{% endblock %}
-{% block content %}{% endblock %}
+{% load static %}
+{% block styles %}
 
+  .form-control {
+    border-radius: 20px;
+    padding: 5px; /* Reduced padding for smaller size */
+    font-size: 14px; /* Reduced font size for smaller size */
+    color: #333;
+    background-color: #f9f9f9;
+    border: 2px solid #e9ecef;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
 
+  .form-control:focus {
+    border-color: #4fa8f2;
+    box-shadow: 0 0 0 0.2rem rgba(79, 168, 242, 0.25);
+  }
 
+  .form-label {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px; /* Reduced margin for smaller size */
+  }
+
+  .mb-3 {
+    margin-bottom: 10px; /* Reduced margin for smaller size */
+  }
+
+  .btn {
+    border-radius: 20px;
+    padding: 5px 10px; /* Reduced padding for smaller size */
+    font-size: 14px; /* Reduced font size for smaller size */
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.15s ease-in-out;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6b7280;
+  }
+
+  .btn-secondary:hover {
+    background-color: #4f4f4f;
+  }
+
+  .form-container {
+    background-color: transparent;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 80%; /* Adjusted width for smaller size */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px; /* Reduced padding for smaller size */
+    margin:auto;
+  }
+
+  .form-header {
+    font-weight: bold;
+    font-size: 20px; /* Reduced font size for smaller size */
+    color: white;
+    margin-bottom: 5px; /* Reduced margin for smaller size */
+  }
+
+  .form-subheader {
+    font-size: 14px; /* Reduced font size for smaller size */
+    color: white;
+    margin-bottom: 10px; /* Reduced margin for smaller size */
+  }
+
+  /* Responsive adjustments for mobile screen */
+  @media (max-width: 768px) {
+    .form-container {
+      
+      width: 90%;
+      padding: 5px;
+      margin: auto;
+    }
+    .form-control {
+      padding: 3px;
+      font-size: 12px;
+    }
+    .form-label {
+      margin-bottom: 3px;
+    }
+    .mb-3 {
+      margin-bottom: 5px;
+    }
+    .btn {
+      padding: 3px 5px;
+      font-size: 12px;
+    }
+  }
+
+  /* Responsive adjustments for large screen */
+  @media (min-width: 1200px) {
+    .form-container {
+      width: 60%;
+      top:57%;
+      width:40%;
+    }
+
+    .form-label{
+        margin-bottom:1px;
+    }
+  }
+
+  /* Responsive adjustments for medium screen */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .form-container {
+      width: 60%;
+      top:57%;
+      width:40%;
+    }
+
+    .form-label{
+        margin-bottom:1px;
+    }
+  }
+    
+  
+{% endblock %}
+
+{% block title %}Contact{% endblock %}
+{% block content %}
+
+<section>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000"> <!-- Changed data-bs-interval from 1000 to 3000 to slow down the carousel -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+      </div>
+      <section>
+
+      <div class="form-container">
+        <div class="form-header">Get in Touch</div>
+        <div class="form-subheader">Please fill out the form below to contact us.</div>
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="number" class="form-label">Number (available on whatsapp)</label>
+            <input type="text" class="form-control" id="number" name="number" required>
+          </div>
+          <div class="mb-3">
+            <label for="marriageDate" class="form-label">Marriage Date</label>
+            <input type="date" class="form-control" id="marriageDate" name="marriageDate" required>
+          </div>
+          <div class="mb-3">
+            <label for="gmailId" class="form-label">Gmail ID</label>
+            <input type="email" class="form-control" id="gmailId" name="gmailId" required>
+          </div>
+          <div class="mb-3">
+            <label for="area" class="form-label">Your Area (in Lucknow)</label>
+            <select class="form-control" id="area" name="area" required>
+              <option value="">Select Area</option>
+              <option value="Hazratganj">Hazratganj</option>
+              <option value="Gomti Nagar">Gomti Nagar</option>
+              <option value="Indira Nagar">Indira Nagar</option>
+              <option value="Aliganj">Aliganj</option>
+              <option value="Rajajipuram">Rajajipuram</option>
+              <option value="Nishatganj">Nishatganj</option>
+              <option value="Aminabad">Aminabad</option>
+              <option value="Chowk">Chowk</option>
+              <option value="Aishbagh">Aishbagh</option>
+              <option value="Charbagh">Charbagh</option>
+              <option value="Mahanagar">Mahanagar</option>
+              <option value="Kanpur Road">Kanpur Road</option>
+              <option value="Faizabad Road">Faizabad Road</option>
+              <option value="Sultanpur Road">Sultanpur Road</option>
+              <option value="Raebareli Road">Raebareli Road</option>
+              <option value="Hardoi Road">Hardoi Road</option>
+              <option value="Sitapur Road">Sitapur Road</option>
+              <option value="Bakshi Ka Talab">Bakshi Ka Talab</option>
+              <option value="Jankipuram">Jankipuram</option>
+              <option value="Vikas Nagar">Vikas Nagar</option>
+              <option value="Kalyanpur">Kalyanpur</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
+      </div>
+      <section>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+
+{% endblock %}
