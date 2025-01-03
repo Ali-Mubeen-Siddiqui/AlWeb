@@ -1,6 +1,255 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Gallery{% endblock %}
-{% block content %}{% endblock %}
+{% block styles %}
 
+  .alert {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:80%;
+    color: white;
+  }
+  .alert .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: red;
+  }
+  .gallery-item{
+    background:transparent;
+    border-color:white;
+    background-filter: blur(5px);
+    border-radius: 10px; /* Added corner radius */
+    cursor: pointer; /* Changed cursor to pointer for click interaction */
+    transition: transform 0.5s ease; /* Added transition for animation */
+    transform: scale(1); /* Initial scale */
+    &:hover {
+      transform: scale(1.05); /* Scales up on hover */
+    }
+    
+  }
 
+  .item-label{
+    background:transparent;
+    background-filter: blur(10px);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    border-radius: 10px; /* Added corner radius */
+  }
+  .heading {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  .quote {
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    font-style: italic;
+  }
+
+  .name {
+    color: white;
+    
+  }
+  .date {
+    color: white;
+   
+  }
+
+  /* Added modal styles for image dialog */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    height: auto; /* Adjust height automatically */
+    border-radius: 10px; /* Added corner radius for a clean look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Added shadow for depth */
+  }
+
+  /* Caption of Modal Image */
+  #caption {
+    margin-top: 10px;
+    text-align: center;
+    color: #ccc;
+    padding: 2px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 2;
+    cursor: default;
+  }
+
+  /* Add Animation */
+  .modal-content, #caption { 
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+  }
+
+  @keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+  }
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 6%;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+
+  }
+{% endblock %}
+
+{% block content %}
+  <!-- Gallery page content goes here -->
+  <section>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000"> <!-- Changed data-bs-interval from 1000 to 3000 to slow down the carousel -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  <section style="position: relative; z-index: 1; margin-top: 80vh;">
+    <!-- Your page content here -->
+    <section class="container" style="backdrop-filter: blur(10px);">
+      <div>
+        <h1 class="text-center mt-5 heading" style="color: white;">Welcome To Our Gallery</h1>
+        <p class="text-center quote " style="color: white;">"Where memories are crafted, and moments are cherished."</p>
+      </div>
+      
+      <section class="text-center mt-5" style="backdrop-filter: blur(10px);">
+        <div>
+          <p class="text-light">At Al~Hamd Caterers, we pride ourselves on offering comprehensive party solutions across Lucknow at reasonable prices, ensuring your event is a success without breaking the bank.</p>
+          
+          <div class="row">
+            {% for item in galleries %}
+              <div class="col-md-4 mb-4 gallery-item">
+                <div class="card gallery-item">
+                  <img src="/media/{{item.image}}" class="card-img-top" alt="{{ item.place }}" style="object-fit: cover; height: 200px; cursor: pointer;" onclick="openModal(this.src, '{{ item.place }}')" loading="lazy">
+                  <div class="card-body item-label">
+                    <h5 class="card-title name">{{ item.place }}</h5>
+                    <p class="card-text date ">{{ item.date }}</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <a href="{% url 'contact' %}" class="btn btn-primary mt-3" style="color: dark;">Contact us for an event</a>
+        </div>
+        <div>
+          <hr style="border-top: 1px solid white; width: 100%; my-5;" />
+        </div>
+        <section class="footer" style="position: relative; bottom: 0; width: 100%; z-index: 1000; background-color: transparent; backdrop-filter: blur(10px); color: white; text-align: center; padding: 10px;">
+          <div>
+            <p>Helpline No.: <a href="tel:+919044179282" style="color: white;">+91 9044179282</a></p>
+            <p>Office: <a href="https://maps.google.com/maps?q=Khala Bazar, Near Vatsala Hospital, Lucknow" style="color: white;">Khala Bazar, Near Vatsala Hospital, Lucknow</a></p>
+            <p>Country: India</p>
+            <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
+            <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
+          </div>
+        </section>
+      </section>
+    </section>
+  </section>
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" role="alert">
+      {{ message }}
+      <span class="close-btn" onclick="this.parentElement.remove();">x</span>
+    </div>
+  {% endfor %}
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+  <script>
+    async function openModal(src, alt) {
+      document.getElementById("myModal").style.display = "block";
+      document.getElementById("img01").src = await loadImage(src); // Asynchronously load the image
+      document.getElementById("caption").innerHTML = alt;
+    }
+
+    async function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve(src);
+        img.onerror = () => reject(new Error('Image load error'));
+      });
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+  </script>
+{% endblock %}
 

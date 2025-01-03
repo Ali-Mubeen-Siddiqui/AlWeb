@@ -29,13 +29,15 @@
 
   .btn {
     border-radius: 20px;
-    padding: 5px 10px; /* Reduced padding for smaller size */
-    font-size: 14px; /* Reduced font size for smaller size */
+    padding: 10px 20px; /* Increased padding for larger size */
+    font-size: 16px; /* Increased font size for larger size */
     font-weight: bold;
     color: white;
     background-color: #007bff;
     border: none;
     transition: background-color 0.15s ease-in-out;
+    display: inline-block; /* Added to display buttons side by side */
+    margin: 0 10px; /* Added to create space between buttons */
   }
 
   .btn:hover {
@@ -150,7 +152,8 @@
       <div class="form-container">
         <div class="form-header">Get in Touch</div>
         <div class="form-subheader">Please fill out the form below to contact us.</div>
-        <form>
+        <form method="post" action="{% url 'home' %}" id="contactForm">
+            {% csrf_token %}
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
@@ -171,43 +174,44 @@
             <label for="area" class="form-label">Your Area (in Lucknow)</label>
             <select class="form-control" id="area" name="area" required>
               <option value="">Select Area</option>
-              <option value="Hazratganj">Hazratganj</option>
-              <option value="Gomti Nagar">Gomti Nagar</option>
-              <option value="Indira Nagar">Indira Nagar</option>
-              <option value="Aliganj">Aliganj</option>
-              <option value="Rajajipuram">Rajajipuram</option>
-              <option value="Nishatganj">Nishatganj</option>
-              <option value="Aminabad">Aminabad</option>
-              <option value="Chowk">Chowk</option>
-              <option value="Aishbagh">Aishbagh</option>
-              <option value="Charbagh">Charbagh</option>
-              <option value="Mahanagar">Mahanagar</option>
-              <option value="Kanpur Road">Kanpur Road</option>
-              <option value="Faizabad Road">Faizabad Road</option>
-              <option value="Sultanpur Road">Sultanpur Road</option>
-              <option value="Raebareli Road">Raebareli Road</option>
-              <option value="Hardoi Road">Hardoi Road</option>
-              <option value="Sitapur Road">Sitapur Road</option>
-              <option value="Bakshi Ka Talab">Bakshi Ka Talab</option>
-              <option value="Jankipuram">Jankipuram</option>
-              <option value="Vikas Nagar">Vikas Nagar</option>
-              <option value="Kalyanpur">Kalyanpur</option>
+              <optgroup label="Central Lucknow">
+                <option value="Hazratganj">Hazratganj</option>
+                <option value="Aminabad">Aminabad</option>
+                <option value="Chowk">Chowk</option>
+                <option value="Aishbagh">Aishbagh</option>
+                <option value="Charbagh">Charbagh</option>
+              </optgroup>
+              <optgroup label="Suburban Lucknow">
+                <option value="Gomti Nagar">Gomti Nagar</option>
+                <option value="Indira Nagar">Indira Nagar</option>
+                <option value="Aliganj">Aliganj</option>
+                <option value="Rajajipuram">Rajajipuram</option>
+                <option value="Nishatganj">Nishatganj</option>
+                <option value="Mahanagar">Mahanagar</option>
+                <option value="Bakshi Ka Talab">Bakshi Ka Talab</option>
+                <option value="Jankipuram">Jankipuram</option>
+                <option value="Vikas Nagar">Vikas Nagar</option>
+                <option value="Kalyanpur">Kalyanpur</option>
+              </optgroup>
+              <optgroup label="Highways and Roads">
+                <option value="Kanpur Road">Kanpur Road</option>
+                <option value="Faizabad Road">Faizabad Road</option>
+                <option value="Sultanpur Road">Sultanpur Road</option>
+                <option value="Raebareli Road">Raebareli Road</option>
+                <option value="Hardoi Road">Hardoi Road</option>
+                <option value="Sitapur Road">Sitapur Road</option>
+              </optgroup>
               <option value="Other">Other</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-secondary">Reset</button>
+          <div class="text-center"> <!-- Added to center the buttons -->
+            <button type="submit" class="btn btn-primary" onclick="submitForm()">Submit</button>
+            <button type="reset" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+          </div>
         </form>
       </div>
       <section>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <!-- Carousel control arrows removed as per instructions -->
     </div>
   </section>
 
