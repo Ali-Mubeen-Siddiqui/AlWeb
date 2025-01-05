@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reviews{% endblock %}
+{% block styles %}
+
+  .he{
+    font-family: 'Dancing Script', cursive;
+  }
+  .carousel-item {
+    height: 100vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .review-panel {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 100%;
+   
+  }
+  .rating {
+    font-size: 24px;
+    color: black;
+  }
+  
+  .profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%; /* Changed to 50% to make it a perfect circle */
+    margin-top: 1px;
+  }
+  .add-review-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+  }
+  .add-review-btn:hover {
+    background-color: #0056b3;
+  }
+  .review-text {
+    font-family: 'Lato', sans-serif; /* Changed to Lato for a more modern and clean look */
+    font-size: 18px; /* Increased font size for better visibility */
+    color: #333; /* Changed to a darker gray for better contrast */
+    line-height: 1.8; /* Adjusted line height for better readability */
+  }
+{% endblock %}
+
+{% block content %}
+  <section>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="Background 1" style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="Background 2" style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="Background 3" style="height: 100vh; object-fit: cover;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  <section style="position: relative; z-index: 1; margin-top: 80vh;">
+    <section class="container" style="backdrop-filter: blur(10px);">
+      <h1 class="text-center mt-5 he" style="color: white;">Reviews</h1>
+      {% if reviews %}
+      <div class="row">
+        {% for review in reviews %}
+          <div class="col-md-4 mb-4">
+            <div class="review-panel">
+              <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+              <div class="rating">
+                {% for i in "12345" %}
+                  {% if review.stars >= forloop.counter %}
+                    <i class="fa fa-star checked" style="color: black;"></i>  <!-- Full star -->
+                  {% elif review.stars > forloop.counter|add:"-1" %}
+                    <i class="fa fa-star-half-alt checked" style="color: black;"></i>  <!-- Half star -->
+                  {% else %}
+                    <i class="fa fa-star" style="color: lightgray;"></i>  <!-- Empty star -->
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <h2 style="font-size: 18px; font-family: Arial, sans-serif;">{{ review.gmailId }}</h2>
+              <p class="review-text">{{ review.review }}</p> <!-- Added class review-text for better styling -->
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No reviews available.</p>
+    {% endif %}
+  </section>
+  <button class="add-review-btn" style="position: fixed; bottom: 20px; right: 20px;" onclick="window.location.href='/add-review/'">
+    <i class="fas fa-plus"></i> Add Review
+  </button>
+</section>
+{% endblock %}

@@ -8,7 +8,7 @@ class Gallery(models.Model):
     place = models.CharField(default="lucknow", max_length=50)
 
     def __str__(self):
-        return f"{self.name}   -   {self.date}  -  {self.image}"
+        return f"{self.name}     -        {self.date}    -        {self.image}"
     
 
 
@@ -21,17 +21,16 @@ class Contact(models.Model):
     marriageDate = models.DateField()
 
     def __str__(self):
-        return f"{self.name} - {self.date}"
+        return f"{self.name}            -         {self.date}"
     
 
 
 class Review(models.Model):
     gmailId = models.CharField(max_length=50)
-    gmailProfile = models.ImageField(upload_to='user_profiles')
-    review = models.TextField(max_length=100)
+    review = models.TextField(max_length=300)
     date = models.DateField()
-    stars = models.FloatField(max_length=5)
+    stars = models.FloatField(max_length=5.0)
 
 
     def __str__(self):
-        return f"{self.gmailId} - {self.date}"
+        return f"{self.gmailId}     -      {self.date}"

@@ -9,4 +9,5 @@ urlpatterns = [
     
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
+    path('reviews/',views.review_page,name='reviews')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

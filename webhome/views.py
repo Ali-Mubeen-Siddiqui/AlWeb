@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Contact, Gallery
+from .models import Contact, Gallery,Review
 from django.contrib import messages
 import datetime
-import asyncio
+  # Import transaction for atomic operations
 
 from asgiref.sync import sync_to_async
 
@@ -43,11 +43,12 @@ async def index(request):
             # If no errors, save the data
             data = Contact(name=name, phone=number, email=email, area=area, marriageDate=marriageDate, date=datetime.date.today())
             try:
-                await sync_to_async(data.save)()
+                await sync_to_async(data.save)()  # Ensure saving is async
                 message = messages.success(request, "form sent successfully, we will contact you soon")
             except Exception as e:
                 message = messages.error(request, e)
 
+    
     return render(request, "index.html", {"message": message})
 
 async def contact(request):
@@ -60,4 +61,13 @@ async def gallery(request):
     galleries = await sync_to_async(lambda: list(galleries.values('name', 'date', 'image','place')))()
     return render(request, "gallery.html", {"galleries": galleries})
     
-    
+
+
+
+async def review_page(request):
+    reviews = await sync_to_async(Review.objects.all)()
+    reviews = await sync_to_async(lambda: list(reviews.values("date", "gmailId", "review", "stars")))()  # Convert to list asynchronously
+
+    return render(request,"review.html",{"reviews": reviews})
+
+

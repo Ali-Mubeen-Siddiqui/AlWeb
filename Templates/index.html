@@ -27,6 +27,53 @@
     color: red;
   }
 
+  .review-bg{
+    background-color: white;
+    margin-top:20px;
+    height: 200px;
+    border-radius: 20px;
+    border-color:grey;
+    color: black;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+  overflow-y: auto;
+  max-height: 200px;
+    
+  }
+
+  .profile-pic{
+    height: 50px;
+    width: 50px;
+    border-radius: 20px; /* Added for rounder corners */
+    @media (max-width: 768px) {
+      height: 30px;
+      width: 30px;
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      height: 40px;
+      width: 40px;
+    }
+    @media (max-width: 1200px) and (min-width: 1025px) {
+      height: 30px;
+      width: 30px;
+    }
+    @media (min-width: 1201px) {
+      height: 50px;
+      width: 50px;
+    }
+
+    margin-top: 1px;
+    
+  }
+
+  .card {
+    height: 100%;
+    @media (max-width: 768px) {
+      margin-bottom: 20px; /* Added padding between cards for mobile view */
+    }
+  }
+
 {% endblock %}
 
 {% block content %}
@@ -35,13 +82,13 @@
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000"> <!-- Changed data-bs-interval from 1000 to 3000 to slow down the carousel -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="Background 1" style="height: 100vh; object-fit: cover;" loading="lazy">
         </div>
         <div class="carousel-item">
-          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="Background 2" style="height: 100vh; object-fit: cover;" loading="lazy">
         </div>
         <div class="carousel-item">
-          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="..." style="height: 100vh; object-fit: cover;">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="Background 3" style="height: 100vh; object-fit: cover;" loading="lazy">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -65,7 +112,7 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Party Setup</h5>
+              <h2 class="card-title">Party Setup</h2>
               <p class="card-text">From decorations to seating arrangements, we take care of it all, ensuring a memorable event.</p>
             </div>
           </div>
@@ -73,7 +120,7 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Catering</h5>
+              <h2 class="card-title">Catering</h2>
               <p class="card-text">Savor the flavors of our exquisite cuisine, tailored to your taste, and enjoy a culinary experience like no other.</p>
             </div>
           </div>
@@ -81,7 +128,7 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Event Management</h5>
+              <h2 class="card-title">Event Management</h2>
               <p class="card-text">Leave the logistics to us, and enjoy your special day, knowing that every detail is taken care of.</p>
             </div>
           </div>
@@ -91,7 +138,7 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Wedding Planning</h5>
+              <h2 class="card-title">Wedding Planning</h2>
               <p class="card-text">From venue selection to vendor management, we'll make your special day unforgettable.</p>
             </div>
           </div>
@@ -99,7 +146,7 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Birthday Parties</h5>
+              <h2 class="card-title">Birthday Parties</h2>
               <p class="card-text">Celebrate your birthday in style with our customized party packages, tailored to your needs.</p>
             </div>
           </div>
@@ -107,12 +154,65 @@
         <div class="col-md-4">
           <div class="card bg-white text-dark" style="backdrop-filter: blur(10px);">
             <div class="card-body">
-              <h5 class="card-title">Corporate Events</h5>
+              <h2 class="card-title">Corporate Events</h2>
               <p class="card-text">Impress your clients and colleagues with our professional event management services, designed to meet your business needs.</p>
             </div>
           </div>
         </div>
       </section>
+
+      <section>
+        <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+          <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="review-bg" style="padding: 20px; text-align: center;">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <div class="rating" style="font-size: 24px;">
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                    </div>
+                    <h2 style="font-size: 18px; font-family: Arial, sans-serif;">john.doe@gmail.com</h2>
+                    <p>Excellent service and delicious food! Highly recommend Al~Hamd Caterers for any event.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="review-bg" style="padding: 20px; text-align: center;">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <div class="rating" style="font-size: 24px;">
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star-half-alt checked" style="color: black;"></span>
+                    </div>
+                    <h2 style="font-size: 18px; font-family: Arial, sans-serif;">jane.smith@yahoo.com</h2>
+                    <p>Great experience with Al~Hamd Caterers! Their team is professional and the food is amazing.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="review-bg" style="padding: 20px; text-align: center;">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <div class="rating" style="font-size: 24px;">
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
+                      <span class="fa fa-star checked" style="color: lightgray;"></span>
+                      <span class="fa fa-star" style="color: lightgray;"></span>
+                    </div>
+                    <h2 style="font-size: 18px; font-family: Arial, sans-serif;">bob.johnson@hotmail.com</h2>
+                    <p>Good service and tasty food. Would recommend Al~Hamd Caterers for large events, there packages for semi and full catering are awesome.</p>
+                  </div>
+                </div>
+          </div>
+        </div>
+            
+        <button class="btn btn-primary mt-3" style="color: dark; position: relative; z-index: 1000; backdrop-filter: blur(10px); text-align: center; padding: 10px; margin-top: 20px;" onclick="window.location.href='{% url 'contact' %}'">Contact Us</button>
+             
+      </section>
+
       <section class="text-center mt-5" style="backdrop-filter: blur(10px);">
         <div>
           <p class="text-light">At Al~Hamd Caterers, we pride ourselves on offering comprehensive party solutions across Lucknow at reasonable prices, ensuring your event is a success without breaking the bank.</p>
@@ -140,4 +240,3 @@
     </div>
   {% endfor %}
 {% endblock %}
-
