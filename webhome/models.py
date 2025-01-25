@@ -26,7 +26,7 @@ class Contact(models.Model):
 
 
 class Review(models.Model):
-    gmailId = models.CharField(max_length=50)
+    gmailId = models.EmailField(max_length=50)
     review = models.TextField(max_length=300)
     date = models.DateField()
     stars = models.FloatField(max_length=5.0)

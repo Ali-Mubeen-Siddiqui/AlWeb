@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+
+  .form-control {
+    border-radius: 20px;
+    padding: 5px; /* Reduced padding for smaller size */
+    font-size: 14px; /* Reduced font size for smaller size */
+    color: #333;
+    background-color: #f9f9f9;
+    border: 2px solid #e9ecef;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-control:focus {
+    border-color: #4fa8f2;
+    box-shadow: 0 0 0 0.2rem rgba(79, 168, 242, 0.25);
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px; /* Reduced margin for smaller size */
+  }
+
+  .mb-3 {
+    margin-bottom: 10px; /* Reduced margin for smaller size */
+  }
+
+  .btn {
+    border-radius: 20px;
+    padding: 10px 20px; /* Increased padding for larger size */
+    font-size: 16px; /* Increased font size for larger size */
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.15s ease-in-out;
+    display: inline-block; /* Added to display buttons side by side */
+    margin: 0 10px; /* Added to create space between buttons */
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6b7280;
+  }
+
+  .btn-secondary:hover {
+    background-color: #4f4f4f;
+  }
+
+  .form-container {
+    background-color: transparent;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 80%; /* Adjusted width for smaller size */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px; /* Reduced padding for smaller size */
+    margin: auto;
+    max-height: 80vh; /* Set a maximum height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  .form-header {
+    font-weight: bold;
+    font-size: 20px; /* Reduced font size for smaller size */
+    color: white;
+    margin-bottom: 5px; /* Reduced margin for smaller size */
+  }
+
+  .form-subheader {
+    font-size: 14px; /* Reduced font size for smaller size */
+    color: white;
+    margin-bottom: 10px; /* Reduced margin for smaller size */
+  }
+
+  /* Responsive adjustments for mobile screen */
+  @media (max-width: 768px) {
+    .form-container {
+      width: 90%;
+      padding: 5px;
+      margin: auto;
+    }
+    .form-control {
+      padding: 3px;
+      font-size: 12px;
+    }
+    .form-label {
+      margin-bottom: 3px;
+    }
+    .mb-3 {
+      margin-bottom: 5px;
+    }
+    .btn {
+      padding: 3px 5px;
+      font-size: 12px;
+    }
+  }
+
+  /* Responsive adjustments for large screen */
+  @media (min-width: 1200px) {
+    .form-container {
+      width: 60%;
+      top:57%;
+      width:40%;
+    }
+
+    .form-label{
+        margin-bottom:1px;
+    }
+  }
+
+  /* Responsive adjustments for medium screen */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .form-container {
+      width: 60%;
+      top:57%;
+      width:40%;
+    }
+
+    .form-label{
+        margin-bottom:1px;
+    }
+  }
+    
+
+  .alert {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    color: white;
+  }
+  .alert .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    color: red;
+  }
+  
+{% endblock %}
+
+{% block title %}Add Review{% endblock %}
+{% block content %}
+
+<section>
+  {% if message %}
+    
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        {{ message }}
+        <span class="close-btn" onclick="this.parentElement.remove();">x</span>
+      </div>
+ 
+  {% endif %}
+
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="bg" style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="bg" style="height: 100vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="bg" style="height: 100vh; object-fit: cover;">
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="form-header">Add a Review</div>
+        <div class="form-subheader">Please fill out the form below to submit your review.</div>
+        
+        <form method="post" action="{% url 'add-review' %}" id="reviewForm">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label" for="gmail">Gmail</label>
+            <input type="email" class="form-control" id="gmail" name="gmail" required autocomplete="email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="rating">Rating (1 to 5)</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" required class="form-control" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="review">Your Review</label>
+            <textarea class="form-control" id="review" name="review" rows="4" maxlength="300" required autocomplete="off"></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Policies{% endblock %}
+
+{% block styles %}
+.policy-section {
+    background: rgba(28, 28, 35, 0.95);
+    padding: 35px;
+    border-radius: 15px;
+    margin: 25px 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.policy-title {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 10px;
+}
+
+.policy-content {
+    color: #e0e0e0;
+    line-height: 1.8;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.policy-content h3 {
+    color: #4a90e2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 25px 0 15px;
+}
+
+.policy-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.policy-content li {
+    margin: 12px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.policy-content li:before {
+    content: "•";
+    color: #4a90e2;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+}
+
+.policy-content p {
+    margin: 20px 0;
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+@media (max-width: 768px) {
+    .policy-section {
+        padding: 25px;
+        margin: 15px 0;
+    }
+    
+    .policy-title {
+        font-size: 26px;
+    }
+    
+    .policy-content {
+        font-size: 15px;
+    }
+}
+
+body{
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    min-height: 100vh;
+}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="policy-section">
+        <h1 class="policy-title">Terms & Conditions</h1>
+        <div class="policy-content">
+            <h3>Service Terms</h3>
+            <ul>
+                {% comment %} <li>Menu changes can be accommodated up to 72 hours before the event</li> {% endcomment %}
+                <li>Final guest count must be confirmed 48 hours prior to the event</li>
+                <li>We reserve the right to adjust pricing for significant changes in guest count</li>
+            </ul>
+
+            <h3>Quality Assurance</h3>
+            <ul>
+                <li>All our ingredients are sourced fresh and prepared under hygienic conditions</li>
+                <li>We follow strict food safety guidelines</li>
+                <li>Any quality concerns must be reported during the event</li>
+            </ul>
+
+            <h3>Brand Protection</h3>
+            <ul>
+                <li>The brand name and logo are protected by commercial patents</li>
+                <li>Any unauthorized use of our brand assets is strictly prohibited</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="policy-section">
+        <h1 class="policy-title">Privacy Policy</h1>
+        <div class="policy-content">
+            <p>At Al~Hamd Caterers, we take your privacy seriously. We collect only essential information needed to process your booking and provide our services.</p>
+            
+            <h3>Information Security</h3>
+            <ul>
+                <li>All submitted information remains secure and confidential</li>
+                <li>We implement industry-standard security measures</li>
+                <li>Your data will not be shared with third parties</li>
+            </ul>
+
+            <h3>Public Reviews Policy</h3>
+            <ul>
+                <li>All submitted reviews are public</li>
+                <li>Reviews containing inappropriate content may be removed</li>
+                <li>We reserve the right to moderate review content</li>
+            </ul>
+
+            <h3>Rights Compliance</h3>
+            <ul>
+                <li>We respect and protect your privacy rights</li>
+                <li>We comply with all applicable data protection laws</li>
+                <li>You have the right to access and control your data</li>
+            </ul>
+
+            <p>We never share your personal information with third parties except when required by law.</p>
+        </div>
+    </div>
+</div>
+
+<section class="footer" style="position: relative; bottom: 0; width: 100%; z-index: 1000; background-color: transparent; backdrop-filter: blur(10px); color: white; text-align: center; padding: 10px;">
+    <div>
+        <p>Helpline No.: <a href="tel:+919044179282" style="color: white;">+91 9044179282</a></p>
+        <p>Office: <a href="https://maps.google.com/maps?q=Khala Bazar, Near Vatsala Hospital, Lucknow" style="color: white;">Khala Bazar, Near Vatsala Hospital, Lucknow</a></p>
+        <p>Country: India</p>
+        <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
+        <p>Report a bug: <a href="mailto:alimubeensiddiqui@gmail.com" style="color: white;">alimubeensiddiqui@gmail.com</a></p>
+        <p><a href="#" style="color: white;">Privacy Policy</a></p>
+        <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
+    </div>
+</section>
+{% endblock %}

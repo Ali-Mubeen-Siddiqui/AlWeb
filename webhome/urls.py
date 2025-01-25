@@ -9,5 +9,7 @@ urlpatterns = [
     
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
-    path('reviews/',views.review_page,name='reviews')
+    path('reviews/',views.review_page,name='reviews'),
+    path("add-review/",views.add_review,name="add-review"),
+    path("privacy-policy/",views.policies,name="privacy-policy")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

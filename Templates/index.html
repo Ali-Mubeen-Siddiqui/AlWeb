@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -17,7 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:80%;
+    width: 80%;
     color: white;
   }
   .alert .close-btn {
@@ -27,44 +29,50 @@
     color: red;
   }
 
-  .review-bg{
+  .review-bg {
     background-color: white;
-    margin-top:20px;
+    margin-top: 20px;
     height: 200px;
     border-radius: 20px;
-    border-color:grey;
+    border-color: grey;
     color: black;
     margin-right: auto;
     margin-left: auto;
     display: block;
-  overflow-y: auto;
-  max-height: 200px;
-    
+    overflow-y: auto;
+    max-height: 200px;
   }
 
-  .profile-pic{
+  .profile-pic {
     height: 50px;
     width: 50px;
     border-radius: 20px; /* Added for rounder corners */
-    @media (max-width: 768px) {
+    margin-top: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .profile-pic {
       height: 30px;
       width: 30px;
     }
-    @media (max-width: 1024px) and (min-width: 769px) {
+  }
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .profile-pic {
       height: 40px;
       width: 40px;
     }
-    @media (max-width: 1200px) and (min-width: 1025px) {
+  }
+  @media (max-width: 1200px) and (min-width: 1025px) {
+    .profile-pic {
       height: 30px;
       width: 30px;
     }
-    @media (min-width: 1201px) {
+  }
+  @media (min-width: 1201px) {
+    .profile-pic {
       height: 50px;
       width: 50px;
     }
-
-    margin-top: 1px;
-    
   }
 
   .card {
@@ -74,21 +82,32 @@
     }
   }
 
+  .btn2 {
+    display: block;
+    margin: 20px auto;
+    color: dark;
+    position: relative;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 10px;
+  }
+
 {% endblock %}
 
 {% block content %}
   <!-- Home page content goes here -->
   <section>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000"> <!-- Changed data-bs-interval from 1000 to 3000 to slow down the carousel -->
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;" data-bs-interval="3000">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="Background 1" style="height: 100vh; object-fit: cover;" loading="lazy">
+          <img src="{% static 'bg1.jpg' %}" class="d-block w-100" alt="Background 1" style="height: 100vh; object-fit: cover;">
         </div>
         <div class="carousel-item">
-          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="Background 2" style="height: 100vh; object-fit: cover;" loading="lazy">
+          <img src="{% static 'bg2.jpg' %}" class="d-block w-100" alt="Background 2" style="height: 100vh; object-fit: cover;">
         </div>
         <div class="carousel-item">
-          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="Background 3" style="height: 100vh; object-fit: cover;" loading="lazy">
+          <img src="{% static 'bg3.jpg' %}" class="d-block w-100" alt="Background 3" style="height: 100vh; object-fit: cover;">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -105,8 +124,8 @@
     <!-- Your page content here -->
     <section class="container" style="backdrop-filter: blur(10px);">
       <div>
-        <h1 class="text-center mt-5" style="color: white;">Welcome to Al~Hamd Caterers</h1>
-        <p class="text-center" style="color: white;">Your one-stop solution for all your party needs in Lucknow.</p>
+        <h1 class="text-center mt-5" style="color: white; font-size: 2.5em;">Welcome to Al~Hamd Caterers</h1>
+        <p class="text-center" style="color: white; font-size: 1.5em;">Your one-stop solution for all your party needs in Lucknow.</p>
       </div>
       <section class="row mt-5">
         <div class="col-md-4">
@@ -166,7 +185,7 @@
           <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
@@ -174,13 +193,13 @@
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
                     </div>
-                    <h2 style="font-size: 18px; font-family: Arial, sans-serif;">john.doe@gmail.com</h2>
+                    <h2 style="font-size: 18px; font-family: Arial, sans-serif;"></h2>
                     <p>Excellent service and delicious food! Highly recommend Al~Hamd Caterers for any event.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
@@ -194,22 +213,22 @@
                 </div>
                 <div class="carousel-item">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture" loading="lazy">
+                    <img class="profile-pic" src="{% static 'profile.jpg' %}" alt="Profile Picture">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
-                      <span class="fa fa-star checked" style="color: lightgray;"></span>
+                      <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star" style="color: lightgray;"></span>
                     </div>
                     <h2 style="font-size: 18px; font-family: Arial, sans-serif;">bob.johnson@hotmail.com</h2>
-                    <p>Good service and tasty food. Would recommend Al~Hamd Caterers for large events, there packages for semi and full catering are awesome.</p>
+                    <p>Good service and tasty food. Would recommend Al~Hamd Caterers for large events, their packages for semi and full catering are awesome.</p>
                   </div>
                 </div>
           </div>
         </div>
             
-        <button class="btn btn-primary mt-3" style="color: dark; position: relative; z-index: 1000; backdrop-filter: blur(10px); text-align: center; padding: 10px; margin-top: 20px;" onclick="window.location.href='{% url 'contact' %}'">Contact Us</button>
+        <button class="btn btn2 btn-primary mt-3" onclick="window.location.href='{% url 'contact' %}'">Contact Us</button>
              
       </section>
 
@@ -227,6 +246,8 @@
             <p>Office: <a href="https://maps.google.com/maps?q=Khala Bazar, Near Vatsala Hospital, Lucknow" style="color: white;">Khala Bazar, Near Vatsala Hospital, Lucknow</a></p>
             <p>Country: India</p>
             <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
+            <p>Report a bug: <a href="mailto:alimubeensiddiqui@gmail.com" style="color: white;">alimubeensiddiqui@gmail.com</a></p>
+            <p><a href="#" style="color: white;">Privacy Policy</a></p>
             <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
           </div>
         </section>

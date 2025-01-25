@@ -9,17 +9,14 @@ from asgiref.sync import sync_to_async
 # Create your views here.
 async def validate_form(name, number, email, area, marriageDate):
     # Function to validate form data
-    errors = []
-    if len(name) < 3 or len(name) > 50:
-        errors.append("Name should be between 3 and 50 characters")
-    if not number.replace(' ', '').replace('+', '').isdigit() or not 10 <= len(number.replace(' ', '')) <= 15:
-        errors.append("Invalid phone number")
-    if len(email) < 5 or len(email) > 100:
-        errors.append("Email should be between 5 and 100 characters")
-    if len(area) < 3 or len(area) > 100:
-        errors.append("Area should be between 3 and 100 characters")
-    if len(marriageDate) < 8 or len(marriageDate) > 10:
-        errors.append("Invalid marriage date")
+    errors = [
+        "Name should be between 3 and 50 characters" if len(name) < 3 or len(name) > 50 else None,
+        "Invalid phone number" if not number.replace(' ', '').replace('+', '').isdigit() or not 10 <= len(number.replace(' ', '')) <= 15 else None,
+        "Email should be between 5 and 100 characters" if len(email) < 5 or len(email) > 100 else None,
+        "Area should be between 3 and 100 characters" if len(area) < 3 or len(area) > 100 else None,
+        "Invalid marriage date" if len(marriageDate) < 8 or len(marriageDate) > 10 else None
+    ]
+    errors = [error for error in errors if error is not None]
     return errors
 
 async def index(request):
@@ -70,4 +67,28 @@ async def review_page(request):
 
     return render(request,"review.html",{"reviews": reviews})
 
+
+
+async def add_review(request):
+    message = None
+    if request.method == "POST":
+        email = request.POST.get("gmail")
+        ratings = request.POST.get("rating")
+        review = request.POST.get("review")
+        try:
+            review_instance = Review(gmailId=email, stars=ratings, review=review, date=datetime.date.today())
+            await sync_to_async(review_instance.save)()  # Ensure saving is async
+            message = "Review sent successfully :  Thanks for your review,your review matters a lot to us."
+        except Exception as e:
+            message = messages.error(request, str(e))
+
+    return render(request,"addReview.html",{"message": message})
+
+
+
+async def policies(request):
+    return render(request,"policies.html")
+
+
+    
 
