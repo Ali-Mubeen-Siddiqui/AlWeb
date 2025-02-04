@@ -1,3 +1,4 @@
+```language:AlWeb/vercel.json
 {
     "builds": [
         {
@@ -9,7 +10,7 @@
             "src": "build_files.sh",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "staticfiles_build"
+                "distDir": "staticfiles_build" // Ensure this is correct
             }
         }
     ],
@@ -25,6 +26,10 @@
         {
             "src": "/(.*)",
             "dest": "AlWeb/wsgi.py"
+        },
+        {
+            "src": "/static/(.*)", // Added route for static files
+            "dest": "/static/$1"
         }
     ]
 }
