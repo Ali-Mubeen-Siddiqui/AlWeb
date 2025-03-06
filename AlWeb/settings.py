@@ -162,7 +162,7 @@ DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'  # Check th
 # psycopg version 2.9.6
 
 cloudinary.config(
-    cloud_name='dfdixoz0w',
-    api_key='584492887372285',
-    api_secret='goZsnHwTDkZ67oD6Bj63-QaHWwY',
+    cloud_name=os.getenv('CLOUD_NAME'),
+    api_key=os.getenv('API_KEY'),
+    api_secret=os.getenv('API_SECRET'),
 )
