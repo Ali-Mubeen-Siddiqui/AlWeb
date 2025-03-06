@@ -2,7 +2,7 @@
 
 A robust Django-based website for Al~Hamd Caterers, a premier catering and logistics company based in Lucknow, India. This project showcases our company's services while providing a seamless experience for clients to explore our offerings and get in touch.
 
-![Al~Hamd Caterers Banner](https://res.cloudinary.com/dfdixoz0w/image/upload/v1/media/banner.jpg)
+![Al~Hamd Caterers Banner](static/images/logo.jpg)
 
 ## 🛠️ Tech Stack & Architecture
 
