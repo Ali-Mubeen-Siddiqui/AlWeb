@@ -8,15 +8,5 @@ webhome/__pycache__/
 *.pyc
 *.pyo
 
-# Ignore environment variables and secret keys
 .env
-*.env
-
-# Ignore database files (if using SQLite)
-db.sqlite3
-
-# Ignore static and media files (optional)
-static_build/
-
-
 
