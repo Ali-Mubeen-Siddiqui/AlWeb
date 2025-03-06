@@ -15,6 +15,11 @@ import os
 from django.conf import settings
 from django.conf.urls.static import static
 
+# cloudinary
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webhome',
     'storages',
+    'cloudinary',
+    
 ]
 
 MIDDLEWARE = [
@@ -127,7 +134,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
+# This line has incorrect syntax - should be a list/tuple, not a trailing comma
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # Fixed syntax
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles_build","static")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -137,9 +145,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Add STATIC_ROOT setting for collectstatic
-
-
-
+# Media files configuration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'  # Check this line
+
+# psycopg version 2.9.6
+
+cloudinary.config(
+    cloud_name='dfdixoz0w',
+    api_key='584492887372285',
+    api_secret='goZsnHwTDkZ67oD6Bj63-QaHWwY',
+)

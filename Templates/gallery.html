@@ -193,7 +193,7 @@
             {% for item in galleries %}
               <div class="col-md-4 mb-4 gallery-item">
                 <div class="card gallery-item">
-                  <img src="/media/{{item.image}}" class="card-img-top" alt="{{ item.place }}" style="object-fit: cover; height: 200px; cursor: pointer;" onclick="openModal(this.src, '{{ item.place }}')" loading="lazy">
+                  <img src="{{item.image.url}}" class="card-img-top" alt="{{ item.place }}" style="object-fit: cover; height: 200px; cursor: pointer;" onclick="openModal(this.src, '{{ item.place }}')" loading="lazy">
                   <div class="card-body item-label">
                     <h5 class="card-title name">{{ item.place }}</h5>
                     <p class="card-text date ">{{ item.date }}</p>

@@ -1,10 +1,11 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Gallery(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField()
-    image = models.ImageField(upload_to='gallery_images/')
+    image = CloudinaryField('image')
     place = models.CharField(default="lucknow", max_length=50)
 
     def __str__(self):
