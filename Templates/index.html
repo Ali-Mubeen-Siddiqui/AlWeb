@@ -228,7 +228,7 @@
           </div>
         </div>
             
-        <button class="btn btn2 btn-primary mt-3" onclick="window.location.href='{% url 'contact' %}'">Contact Us</button>
+        <button class="btn btn2 btn-primary mt-3" onclick="window.location.href='{% url 'book-us' %}'">Book Us</button>
              
       </section>
 
@@ -247,7 +247,8 @@
             <p>Country: India</p>
             <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
             <p>Report a bug: <a href="mailto:alimubeensiddiqui@gmail.com" style="color: white;">alimubeensiddiqui@gmail.com</a></p>
-            <p><a href="#" style="color: white;">Privacy Policy</a></p>
+            <p><a href="{% url 'contact' %}" style="color: white;">Contact Us</a></p>
+            <p><a href="{% url 'privacy-policy'%}" style="color: white;">Privacy Policy</a></p>
             <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
           </div>
         </section>

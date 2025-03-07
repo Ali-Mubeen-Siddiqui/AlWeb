@@ -1,6 +1,6 @@
-
 {% extends 'base.html' %}
 {% load static %}
+{% load cache %}
 
 {% block title %}Gallery{% endblock %}
 {% block styles %}
@@ -203,7 +203,7 @@
             {% endfor %}
           </div>
 
-          <a href="{% url 'contact' %}" class="btn btn-primary mt-3" style="color: dark;">Contact us for an event</a>
+          <a href="{% url 'book-us' %}" class="btn btn-primary mt-3" style="color: dark;">Book us for an event</a>
         </div>
         <div>
           <hr style="border-top: 1px solid white; width: 100%; my-5;" />
@@ -215,7 +215,8 @@
             <p>Country: India</p>
             <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
             <p>Report a bug: <a href="mailto:alimubeensiddiqui@gmail.com" style="color: white;">alimubeensiddiqui@gmail.com</a></p>
-            <p><a href="#" style="color: white;">Privacy Policy</a></p>
+            <p><a href="{% url 'contact' %}" style="color: white;">Contact Us</a></p>
+            <p><a href="{% url 'privacy-policy'%}" style="color: white;">Privacy Policy</a></p>
             <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
           </div>
         </section>
@@ -255,4 +256,14 @@
     }
   </script>
 {% endblock %}
+
+{% cache 900 'gallery_template' %}
+<div class="gallery">
+    {% for image in images %}
+        <div class="gallery-item">
+            <img src="{{ image.url }}" alt="{{ image.title }}">
+        </div>
+    {% endfor %}
+</div>
+{% endcache %}
 

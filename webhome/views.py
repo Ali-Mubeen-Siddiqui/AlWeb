@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Contact, Gallery,Review
+from .models import *
 from django.contrib import messages
 import datetime
   # Import transaction for atomic operations
@@ -19,6 +19,16 @@ async def validate_form(name, number, email, area, marriageDate):
     errors = [error for error in errors if error is not None]
     return errors
 
+async def validate_contact_form(name, number, email):
+    # Function to validate partial form data
+    errors = [
+        "Name should be between 3 and 50 characters" if len(name) < 3 or len(name) > 50 else None,
+        "Invalid phone number" if not number.replace(' ', '').replace('+', '').isdigit() or not 10 <= len(number.replace(' ', '')) <= 15 else None,
+        "Email should be between 5 and 100 characters" if len(email) < 5 or len(email) > 100 else None
+    ]
+    errors = [error for error in errors if error is not None]
+    return errors
+
 async def index(request):
     # View for the index page
     message = None
@@ -27,18 +37,17 @@ async def index(request):
         name = request.POST.get("name")
         number = request.POST.get("number")
         email = request.POST.get("gmailId")
-        area = request.POST.get("area")
-        marriageDate = request.POST.get("marriageDate")
+       
         
         # Validate form data
-        errors = await validate_form(name, number, email, area, marriageDate)
+        errors = await validate_contact_form(name, number, email)
         if errors:
             # If errors, display them
             for error in errors:
                 messages.error(request, error)
         else:
             # If no errors, save the data
-            data = Contact(name=name, phone=number, email=email, area=area, marriageDate=marriageDate, date=datetime.date.today())
+            data = Contact(name=name, phone=number, email=email)
             try:
                 await sync_to_async(data.save)()  # Ensure saving is async
                 message = messages.success(request, "form sent successfully, we will contact you soon")
@@ -52,12 +61,15 @@ async def contact(request):
     # View for the contact page
     return render(request, "contact.html")
 
+
+
+
 async def gallery(request):
     # View for the gallery page
     galleries = await sync_to_async(Gallery.objects.all)()
     galleries = await sync_to_async(lambda: list(galleries.values('name', 'date', 'image','place')))()
     return render(request, "gallery.html", {"galleries": galleries})
-    
+
 
 
 
@@ -91,4 +103,40 @@ async def policies(request):
 
 
     
+
+async def book_us(request):
+    message = None
+    if request.method == "POST":
+        # Extract form data
+        name = request.POST.get("name")
+        number = request.POST.get("number")
+        email = request.POST.get("gmailId")
+        area = request.POST.get("area")
+        marriageDate = request.POST.get("marriageDate")
+        
+        # Validate form data
+        errors = await validate_form(name, number, email, area, marriageDate)
+        if errors:
+            # If errors, display them
+            for error in errors:
+                messages.error(request, error)
+            return render(request, "index.html", {"message": message})
+        else:
+            # If no errors, save the data
+            data = Book(name=name, phone=number, email=email, area=area, marriageDate=marriageDate, date=datetime.date.today())
+            try:
+                await sync_to_async(data.save)()  # Ensure saving is async
+                message = messages.success(request, "form sent successfully, we will contact you soon")
+                return render(request, "index.html", {"message": message})
+            except Exception as e:
+                message = messages.error(request, e)
+                return render(request, "index.html", {"message": message})
+    else:
+        return render(request,"book_us.html")
+
+
+    
+    
+
+
 
