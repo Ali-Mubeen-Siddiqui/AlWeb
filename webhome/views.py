@@ -4,6 +4,7 @@ from django.contrib import messages
 import datetime
   # Import transaction for atomic operations
 
+
 from asgiref.sync import sync_to_async
 
 # Create your views here.
@@ -28,6 +29,8 @@ async def validate_contact_form(name, number, email):
     ]
     errors = [error for error in errors if error is not None]
     return errors
+
+
 
 async def index(request):
     # View for the index page
