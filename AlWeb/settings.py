@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'webhome',
     'storages',
     'cloudinary',
@@ -91,7 +93,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'AlWeb.wsgi.application'
-
+SITE_ID = int(os.getenv('SITE_ID'))
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

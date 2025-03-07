@@ -93,6 +93,67 @@
     padding: 10px;
   }
 
+  .specials-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .special-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Alternate layout: reverse the order on larger screens */
+  .special-item.alternate {
+    flex-direction: row-reverse;
+  }
+  
+  .special-img img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .special-note {
+    flex: 1;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .special-note h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+  }
+  
+  .special-note p {
+    margin: 0;
+    font-size: 1em;
+  }
+  
+  /* Responsive adjustments: stack layout for small screens */
+  @media (max-width: 768px) {
+    .special-item,
+    .special-item.alternate {
+      flex-direction: column;
+      text-align: center;
+    }
+    .special-img img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+  }
+  
+
 {% endblock %}
 
 {% block content %}
@@ -179,6 +240,57 @@
           </div>
         </div>
       </section>
+      <section aria-label="Our Specials" class="our-specials">
+        <h2 class="text-center text-white mt-5 mb-3 p-2" style="margin-top: 20px; margin-bottom: 20px; font-size: 2.5rem;">Our Specials</h2>
+        <div class="specials-container">
+          <!-- Special Item 1: Image Left, Note Right -->
+          <div class="special-item">
+            <div class="special-img">
+              <img src="{% static 'biryani.jpg' %}" alt="Biryani" loading="lazy">
+            </div>
+            <div class="special-note">
+              <h3>Biryani (Veg & Non-Veg)</h3>
+              <p>Aromatic biryani cooked with authentic spices to perfection for a rich taste experience. Our biryani is a blend of basmati rice, tender meat or vegetables, and a hint of saffron, ensuring a flavorful and aromatic dish that will leave you craving for more.</p>
+            </div>
+          </div>
+
+          <!-- Special Item 2: Image Right, Note Left -->
+          <div class="special-item alternate">
+            <div class="special-img">
+              <img src="{% static 'roti.jpg' %}" alt="Roti" loading="lazy">
+            </div>
+            <div class="special-note">
+              <h3>Roti (Veg)</h3>
+              <p>Freshly made soft rotis that perfectly complement our meals with their homely touch. Our rotis are made from the finest wheat flour, ensuring a soft and fluffy texture that pairs well with any dish.</p>
+            </div>
+          </div>
+
+          <!-- Special Item 3: Image Left, Note Right -->
+          <div class="special-item">
+            <div class="special-img">
+              <img src="{% static 'dal.jpg' %}" alt="Dal" loading="lazy">
+            </div>
+            <div class="special-note">
+              <h3>Dal Makhani (Veg)</h3>
+              <p>Rich, flavorful dal prepared using time-honored recipes to bring comfort to your table. Our dal is a blend of lentils, aromatic spices, and a touch of love, ensuring a nutritious and delicious meal.</p>
+            </div>
+          </div>
+
+          <!-- Special Item 4: Image Right, Note Left -->
+          <div class="special-item alternate">
+            <div class="special-img">
+              <img src="{% static 'fry.jpg' %}" alt="Fry" loading="lazy">
+            </div>
+            <div class="special-note">
+              <h3>Fry (Non-Veg)</h3>
+              <p>Crispy and perfectly seasoned non-veg fry, a delightful treat for every palate. Our fry is made with the freshest ingredients, ensuring a crunchy exterior and a juicy interior that will satisfy your cravings.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      
 
       <section>
         <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
