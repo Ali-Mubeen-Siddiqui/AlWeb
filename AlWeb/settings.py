@@ -32,6 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # loading env
 load_dotenv()
 
+
+# lets do it together
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
