@@ -176,7 +176,7 @@ cloudinary.config(
 
 
 # cache management 
-CACHE_MIDDLEWARE_SECONDS = 30
+CACHE_MIDDLEWARE_SECONDS = 1200
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
