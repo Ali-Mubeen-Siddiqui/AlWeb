@@ -4,7 +4,7 @@ Disallow: /add-review/
 Disallow: /privacy-policy/
 Disallow: /contact/
 Disallow: /404/
+Disallow: /sitemap.xml/
 Allow: /gallery/
 Allow: /reviews/
-
 
