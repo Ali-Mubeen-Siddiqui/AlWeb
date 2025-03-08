@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /add-review/
+Disallow: /privacy-policy/
+Disallow: /contact/
+Disallow: /404/
+Allow: /gallery/
+Allow: /reviews/
+
+
