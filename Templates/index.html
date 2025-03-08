@@ -1,8 +1,8 @@
-
-
 {% extends 'base.html' %}
 {% load static %}
-
+{% block head %}
+  <meta name="description" content="Welcome to Al~Hamd Caterers, your one-stop solution for all your party needs in Lucknow. With over 20 years of experience, we take care of everything from decorations to catering, ensuring a memorable event.">
+{% endblock %}
 {% block title %}Home{% endblock %}
 {% block styles %}
 
@@ -305,7 +305,7 @@
           <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture">
+                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture" loading="lazy">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
@@ -319,7 +319,7 @@
                 </div>
                 <div class="carousel-item">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture">
+                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture" loading="lazy">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>
@@ -333,7 +333,7 @@
                 </div>
                 <div class="carousel-item">
                   <div class="review-bg" style="padding: 20px; text-align: center;">
-                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture">
+                    <img class="profile-pic" src="{% static 'profile.webp' %}" alt="Profile Picture" loading="lazy">
                     <div class="rating" style="font-size: 24px;">
                       <span class="fa fa-star checked" style="color: black;"></span>
                       <span class="fa fa-star checked" style="color: black;"></span>

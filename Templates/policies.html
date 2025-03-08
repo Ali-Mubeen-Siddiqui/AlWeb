@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block title %}Policies{% endblock %}
-
+{%block head %}
+  <meta name="description" content="View Al~Hamd Caterers' policies, including terms and conditions, privacy policy, and more.">
+{% endblock %}
 {% block styles %}
 .policy-section {
     background: rgba(28, 28, 35, 0.95);
@@ -97,7 +99,6 @@ body{
         <div class="policy-content">
             <h3>Service Terms</h3>
             <ul>
-                {% comment %} <li>Menu changes can be accommodated up to 72 hours before the event</li> {% endcomment %}
                 <li>Final guest count must be confirmed 48 hours prior to the event</li>
                 <li>We reserve the right to adjust pricing for significant changes in guest count</li>
             </ul>
