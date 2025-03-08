@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="description" content="Page not found.">
+  <title>Page Not Found</title>
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      padding: 0 15px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .mt-5 {
+      margin-top: 3rem;
+    }
+    .list-group {
+      list-style: none;
+      padding: 0;
+    }
+    .list-group-item {
+      border: none;
+      padding: 0.5rem 0;
+    }
+    .footer {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <h1 class="text-center mt-5" style="color: #fff;">404 Error: Page Not Found</h1>
+      <p class="text-center" style="color: #fff;">Sorry, the page you are looking for does not exist.</p>
+      <p class="text-center" style="color: #fff;">You can try going back to the <a href="{% url 'home' %}" style="color: #fff;">home page</a> or checking out our other pages:</p>
+      <ul class="list-group text-center">
+        <li class="list-group-item"><a href="{% url 'contact' %}" style="color: #fff;">Contact Us</a></li>
+        <li class="list-group-item"><a href="{% url 'gallery' %}" style="color: #fff;">Gallery</a></li>
+        <li class="list-group-item"><a href="{% url 'reviews' %}" style="color: #fff;">Reviews</a></li>
+      </ul>
+      <section class="footer">
+        <div>
+          <p>Helpline No.: <a href="tel:+919044179282" style="color: white;">+91 9044179282</a></p>
+          <p>Office: <a href="https://maps.google.com/maps?q=Khala Bazar, Near Vatsala Hospital, Lucknow" style="color: white;">Khala Bazar, Near Vatsala Hospital, Lucknow</a></p>
+          <p>Country: India</p>
+          <p>Gmail: <a href="mailto:mdraid31@gmail.com" style="color: white;">mdraid31@gmail.com</a></p>
+          <p>Report a bug: <a href="mailto:alimubeensiddiqui@gmail.com" style="color: white;">alimubeensiddiqui@gmail.com</a></p>
+          <p><a href="{% url 'contact' %}" style="color: white;">Contact Us</a></p>
+          <p><a href="{% url 'privacy-policy'%}" style="color: white;">Privacy Policy</a></p>
+          <p>&copy; 2023 Al~Hamd Caterers. All rights reserved.</p>
+        </div>
+      </section>
+    </div>
+  </section>
+</body>
+</html>
