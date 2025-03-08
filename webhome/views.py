@@ -4,6 +4,7 @@ from django.contrib import messages
 import datetime
   # Import transaction for atomic operations
 
+from django.views.generic import TemplateView
 
 from asgiref.sync import sync_to_async
 
@@ -143,3 +144,5 @@ async def book_us(request):
 
 
 
+class RobotsTxtView(TemplateView):
+    template_name = "robots.txt"
