@@ -3,7 +3,7 @@ from webhome import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import RobotsTxtView
+from .views import RobotsTxtView, SitemapView
 
 
 urlpatterns = [
@@ -17,4 +17,5 @@ urlpatterns = [
     path("add-review/",views.add_review,name="add-review"),
     path("privacy-policy/",views.policies,name="privacy-policy"),
     path("robots.txt", RobotsTxtView.as_view(content_type="text/plain"), name="robots"),
+    path("sitemap.xml", SitemapView.as_view(content_type="application/xml"), name="sitemap"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
